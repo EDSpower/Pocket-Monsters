@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    用户名：<input type="text" name="username" id="username"> 
+    密码：<input type="text" name="password" id="password"> 
+    <input type="submit" value="登录" id="btn"> 
+    </form>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        $('#btn').click(function(){
+            $.post({
+                url:'http://localhost/user/check',
+                data:{
+                    'username':$('#username').val(),
+                    'password':$('#password').val()
+                },
+                dataType:'json',
+                success: function (obj){
+                    if(obj.flag==1){
+                        location = "http://localhost/user/success";
+                    }else {
+                        location = "http://localhost/user/failure";
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>
